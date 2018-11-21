@@ -15,3 +15,20 @@ The wiki documents our advancement in the following topics:
 - session
 - thread management
 - web history
+
+##### Lucas part #####
+
+
+
+##### Dylan part #####
+
+
+
+
+##### Adrien part #####
+
+
+
+
+##### Loïc part #####
+

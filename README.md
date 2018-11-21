@@ -1,6 +1,11 @@
 # BroBrowser
 Group project for college (english class)
 
+##### Lucas part ##### - LucasM69
+##### Dylan part ##### - CrazyTummy
+##### Adrien part ##### - Belgarel
+##### Loïc part ##### - Lorest
+
 Contains the code for several sub-projects:
 
 
@@ -16,19 +21,4 @@ The wiki documents our advancement in the following topics:
 - thread management
 - web history
 
-##### Lucas part #####
-
-
-
-##### Dylan part #####
-
-
-
-
-##### Adrien part #####
-
-
-
-
-##### Loïc part #####
 

@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class RessourceManager {
     private static RessourceManager instance;
     
-    public InputStream getRessource(URL url) throws RessourceNotFoundException {
+    public InputStream getRessource(URL url) throws RessourceNotFoundException, IOException {
         InputStream ret = null;
 
         //First, check that the resource is not already in the cache

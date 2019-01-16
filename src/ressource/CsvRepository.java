@@ -32,6 +32,7 @@ public class CsvRepository {
 			for (String col : line.split(","))
 				rec.add(col);
 			values.add(rec);
+			line = br.readLine();
 		}
 	}
 	

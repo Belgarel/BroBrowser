@@ -27,11 +27,17 @@ public class Cache
 {
     private static Cache instance = null;
     
-    private Cache() throws SQLException {
+    private CsvRepository db;
+    
+    private Cache() throws SQLException, IOException {
+    	db = new CsvRepository("resources/db_cache.csv");
     }
     
     public InputStream getStreamFromURL(URL url) throws FileNotFoundException { //TODO
         //first, check the database -> appropriate reccord
+    	int rowid = db.getRowIndexForColumnIndex("url", url.toString());
+System.out.println("URL found:" + url);
+    	
         //if record found, 
         throw new FileNotFoundException();
     }
@@ -41,7 +47,7 @@ public class Cache
     }
     
     
-    public synchronized static Cache instance() {
+    public synchronized static Cache instance() throws IOException {
         if (instance == null)
             try {
                 instance = new Cache();

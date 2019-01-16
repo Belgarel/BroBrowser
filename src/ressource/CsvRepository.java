@@ -38,7 +38,7 @@ public class CsvRepository {
 	
 	private int getColumnIndex(String colname) {
 		int i = 0;
-		while (!columns.get(i).equals(colname) && i < columns.size())
+		while (i < columns.size() && !columns.get(i).equals(colname))
 			i++;
 		if (i == columns.size())
 			i = -1;
@@ -66,8 +66,8 @@ public class CsvRepository {
 		if (colIndex > columns.size() || colIndex < 0)
 			return -1;
 		int indexRow = 0;
-		while (!values.get(indexRow).get(colIndex).equals(colValue)
-				&& indexRow < values.size())
+		while (indexRow < values.size() &&
+				!values.get(indexRow).get(colIndex).equals(colValue))
 			indexRow++;
 		if (indexRow == columns.size())
 			return -1;

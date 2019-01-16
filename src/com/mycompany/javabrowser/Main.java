@@ -12,7 +12,7 @@ public class Main extends Application {
 	}
 	
 	public void start(Stage stage) throws Exception {
-		ClientPanel clientPanel = new ClientPanel("<div><div>blablabla</div></div>");
+		ClientPanel clientPanel = new ClientPanel();
 		Group root = new Group();
 		root.getChildren().add(clientPanel);
 		Scene scene = new Scene(root, 600, 700);
@@ -20,5 +20,4 @@ public class Main extends Application {
 		stage.setScene(scene);
 		stage.show();
 	}
-
 }

@@ -1,10 +1,15 @@
 package com.mycompany.javabrowser;
 
-import java.util.ArrayList;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import ressource.RessourceManager;
+import ressource.RessourceNotFoundException;
 
 public class TransformClick implements EventHandler<ActionEvent> {
 	
@@ -16,6 +21,23 @@ public class TransformClick implements EventHandler<ActionEvent> {
 	
 	@Override
 	public void handle(ActionEvent arg0) {
+    	try {
+    		// Get the url of the navigation bar
+			URL url = new URL(this.cPanel.getURL());
+			// Get the html text of the page and launch the dom interpertor
+	        InputStream is = RessourceManager.instance().getRessource(url);
+	        this.cPanel.DOMInterpretor(RessourceManager.getFileContent(is));
+		} catch (MalformedURLException | RessourceNotFoundException e) {
+			// if there is a problem, pop an alert
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Explorer");
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+
+			alert.showAndWait();
+		}
+    	/*
 		// Html content
 		String html = this.cPanel.receivedBasicText.getText();
 		// Create an array to create the dom of the page
@@ -90,5 +112,6 @@ public class TransformClick implements EventHandler<ActionEvent> {
 			Label l = new Label(t.getContent());
 			this.cPanel.page.getChildren().add(l);
 		}
+				*/
 	}
 }

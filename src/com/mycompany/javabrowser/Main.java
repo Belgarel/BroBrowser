@@ -12,7 +12,7 @@ public class Main extends Application {
 	}
 	
 	public void start(Stage stage) throws Exception {
-		ClientPanel clientPanel = new ClientPanel("<div><div style='display:inline-block;'><span>Texte</span></div><div style='display:inline-block;'><span>Texte2</span></div></div>");
+		ClientPanel clientPanel = new ClientPanel("<div><div>blablabla</div></div>");
 		Group root = new Group();
 		root.getChildren().add(clientPanel);
 		Scene scene = new Scene(root, 600, 700);

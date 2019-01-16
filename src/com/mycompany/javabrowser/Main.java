@@ -12,6 +12,8 @@ public class Main extends Application {
 	}
 	
 	public void start(Stage stage) throws Exception {
+		Favorite fav = new Favorite();
+		fav.getEntireFavFile();
 		ClientPanel clientPanel = new ClientPanel("<div><div style='display:inline-block;'><span>Texte</span></div><div style='display:inline-block;'><span>Texte2</span></div></div>");
 		Group root = new Group();
 		root.getChildren().add(clientPanel);

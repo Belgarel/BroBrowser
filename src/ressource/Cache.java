@@ -35,11 +35,22 @@ public class Cache
     
     public InputStream getStreamFromURL(URL url) throws FileNotFoundException { //TODO
         //first, check the database -> appropriate reccord
+    	InputStream ret = null;
     	int rowid = db.getRowIndexForColumnIndex("url", url.toString());
-System.out.println("URL found:" + url);
+    	String path = db.getField("path", rowid);
+System.out.println(path);
+    	if (path == null || "".equals(path))
+    		throw new FileNotFoundException();
     	
-        //if record found, 
-        throw new FileNotFoundException();
+        //if record found,
+    	try {
+	    	File initialFile = new File(path);
+	        ret = new FileInputStream(initialFile);
+    	}
+    	catch (IOException ioe) { throw new FileNotFoundException();}
+System.out.println(path);
+    	
+    	return ret;
     }
     public InputStream saveFile(InputStream file, URL url) {
     	//TODO

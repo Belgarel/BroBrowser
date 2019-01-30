@@ -1,0 +1,14 @@
+THEME:
+- we use it everyday but we don't know the underlying gears
+OR
+- massive part of the programs we will be building as developers (webservices, client in browser)
+
+(not tweetable enough)
+
+STORY
+- Lucas: infancy, low level (C, sockets,...)
+- Dylan: parsing with and API, DOM-tree (html, css)
+- Adrien: caching and embedded database
+- Loïc: more advanced functionality - javascript engine
+
+First : information, abstract concepts, then show rudimentary implementation

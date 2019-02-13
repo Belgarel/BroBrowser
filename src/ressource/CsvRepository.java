@@ -85,6 +85,14 @@ public class CsvRepository {
 		}
 		return rows;
 	}
+	
+	public ArrayList<ArrayList<String>> getAll() {
+		return values;
+	}
+	
+	public ArrayList<String> getColumns() {
+		return columns;
+	}
 
 	/**
 	 * Returns the index of the first row with the value "colValue" in the column named "colName"

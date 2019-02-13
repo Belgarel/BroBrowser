@@ -36,17 +36,9 @@ public class RessourceManager {
         
         if (ret == null) //then, if it was not found, go fetch it.
         {
-            try {
-                ret = url.openStream();
-            } catch (IOException ex) {
-                System.out.println("Error: RessourceManager > getRessource > IOException " + ex.getMessage());
-                ret = null;
-            }
+            ret = Cache.instance().saveFile(url);
             if (ret == null) //then, if the file still was not found, abort
                 throw new RessourceNotFoundException();
-            
-            //if the find was found, send it to the cache for treatment
-            ret = Cache.instance().saveFile(ret, url);
         }
         return ret;
     }

@@ -4,13 +4,17 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 public class CsvRepository {
 
+	String filePath;
 	ArrayList<String> columns;
 	ArrayList<ArrayList<String>> values; //each element of the values ArrayList is a row
 	
@@ -18,6 +22,7 @@ public class CsvRepository {
 		FileReader fr = new FileReader(filePath);
 		BufferedReader br = new BufferedReader(fr);
 
+		this.filePath = filePath;
 		columns = new ArrayList<String>();
 		values = new ArrayList<ArrayList<String>>();
 		
@@ -113,5 +118,52 @@ public class CsvRepository {
 		return getRowsIndexForColumnIndex(getColumnIndex(colName), colValue);
 	}
 	
+	/**
+	 * Writes a line in the database, at the end of the file
+	 * @param values the list of values to be written. The key is the name of the field.
+	 */
+	public void appendToTable(Map<String, String> values) {
+		String valuesToWrite = makeLine(values);
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(this.filePath, true);
+			fw.append(valuesToWrite);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fw != null) {
+				try {
+					fw.flush();
+					fw.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	private String makeLine(Map<String, String> values) {
+		String ret = "";
+		//Ordering the values to match the column order
+		ArrayList<String> orderedValues = new ArrayList<String>();
+		for (String colName : columns) {
+			String value = values.get(colName);
+			if (value == null)
+				value = "";
+			orderedValues.add(value);
+		}
+		
+		//turning the arraylist into a single line.
+		Iterator<String> it = orderedValues.iterator();
+		String currentValue = it.hasNext() ? it.next() : "";
+		ret = ret.concat(currentValue);
+		while (it.hasNext()) {
+			ret = ret.concat(",");
+			currentValue = it.next();
+			ret = ret.concat(currentValue);
+		}
+		
+		return ret;
+	}
 	
 }
